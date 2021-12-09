@@ -1,4 +1,6 @@
 require("dotenv").config();
+require("./connections/mongoose");
+
 import express from "express";
 import cors from "cors";
 import { mainRouter } from "./routers/index"
