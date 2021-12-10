@@ -11,15 +11,15 @@ export const EmplooyeeRepostory = {
         });
     },
     findAll: () => {
-        return EmployeeSchema.find().lean();
+        return EmployeeSchema.find().lean<Employee[]>();
     },
     findById: (id: string) => {
-        return EmployeeSchema.findById(id).lean();
+        return EmployeeSchema.findById(id).lean<Employee>();
     },
     update: (id: string, employee: EmployeeWithoutId) => {
         return EmployeeSchema.findByIdAndUpdate(id, employee as UpdateQuery<Employee>, { new: true });
     },
     delete: (id: string) => {
-        return EmployeeSchema.findByIdAndDelete(id);
+        return EmployeeSchema.findByIdAndDelete(id).lean<Employee>();
     },
 }
