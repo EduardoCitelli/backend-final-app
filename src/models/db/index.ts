@@ -1,7 +1,8 @@
 import { model } from 'mongoose'
-import { employeeModel } from './employee.js'
+import { Employee } from '../../entities/Employee.js';
+import { employeeModel } from './employee'
 
-const EmployeeSchema = model("Employee", employeeModel);
+const EmployeeSchema = model<Employee>("Employee", employeeModel);
 
 export {
     EmployeeSchema,

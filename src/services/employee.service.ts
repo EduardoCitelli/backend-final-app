@@ -16,12 +16,7 @@ async function GetOne(id: string): Promise<Employee> {
 async function Create(employee: Employee): Promise<Employee> {
     const entity = await EmplooyeeRepostory.save(employee);
 
-    const response: Employee = {
-        id: entity._id.toString(),
-        ...entity._doc,
-    };
-
-    return response;
+    return entity;
 }
 
 async function Update(id: string, data: Employee): Promise<any> {

@@ -5,7 +5,6 @@ const employeeValidation = Joi.object({
     surname: Joi.string().required(),
     phone: Joi.string().required(),
     email: Joi.string().email().required(),
-    username: Joi.string().required(),
     area: Joi.number().required(),
 }).strict();
 

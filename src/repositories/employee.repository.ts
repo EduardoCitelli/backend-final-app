@@ -11,7 +11,7 @@ export const EmplooyeeRepostory = {
         });
     },
     findAll: () => {
-        return EmployeeSchema.find().lean<Employee[]>();
+        return EmployeeSchema.find();
     },
     findById: (id: string) => {
         return EmployeeSchema.findById(id).lean<Employee>();
