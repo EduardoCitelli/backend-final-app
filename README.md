@@ -51,7 +51,7 @@ for it a simple API was requested that has the basic commands "CRUD"
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Creation of Users with API
+:heavy_check_mark: Creation of Employees with API
 
 ## :rocket: Technologies ##
 
