@@ -56,7 +56,7 @@ async function Create(req: Request, res: Response) {
 
                 const response: BaseResponse<Employee> = {
                     message: "error",
-                    error: `A user with that ${field} already exists.`
+                    error: `A employee with that ${field} already exists.`
                 }
 
                 res.status(409).json(response);
@@ -73,8 +73,32 @@ async function Create(req: Request, res: Response) {
         });
 }
 
+async function Delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const employee = await employeeService.Delete(id);
+
+    if (!employee) {
+        const response: BaseResponse<Employee> = {
+            message: "Not found",
+            error: "Employee not found"
+        }
+
+        res.status(404).send(response);
+        return;
+    }
+
+    const response: BaseResponse<Employee> = {
+        message: "Success",
+        data: employee,
+    }
+
+    res.status(200).send(response);
+}
+
 export {
     GetAll,
-    Create,
     GetOne,
+    Create,
+    Delete,
 }
