@@ -14,6 +14,29 @@ async function GetAll(req: Request, res: Response) {
     res.status(200).json(response);
 }
 
+async function GetOne(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const employee: Employee = await employeeService.GetOne(id);
+
+    if (!employee) {
+        const response: BaseResponse<Employee> = {
+            message: "Not found",
+            error: "User not found",
+        }
+
+        res.status(404).send(response);
+        return;
+    }
+
+    const response: BaseResponse<Employee> = {
+        message: "Success",
+        data: employee,
+    }
+
+    res.status(200).send(response);
+}
+
 async function Create(req: Request, res: Response) {
     const employee: Employee = req.body;
 
@@ -53,4 +76,5 @@ async function Create(req: Request, res: Response) {
 export {
     GetAll,
     Create,
+    GetOne,
 }

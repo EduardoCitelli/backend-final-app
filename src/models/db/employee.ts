@@ -17,6 +17,7 @@ const employeeModel = new Schema<Employee>({
   email: {
     type: String,
     required: true,
+    unique:true,
   },
   area: {
     type: SchemaTypes.Number,

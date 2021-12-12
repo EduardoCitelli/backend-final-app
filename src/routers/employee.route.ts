@@ -11,6 +11,12 @@ employeeRouter.get(
     employeeController.GetAll
 );
 
+employeeRouter.get(
+    EmployeeRoutes.GetById,
+    validateParameter(employeeIdValidation),
+    employeeController.GetOne
+);
+
 employeeRouter.post(
     EmployeeRoutes.Create,
     validateBody(employeeValidation),

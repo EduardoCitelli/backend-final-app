@@ -14,12 +14,12 @@ export const EmplooyeeRepostory = {
         return EmployeeSchema.find();
     },
     findById: (id: string) => {
-        return EmployeeSchema.findById(id).lean<Employee>();
+        return EmployeeSchema.findById(id);
     },
     update: (id: string, employee: EmployeeWithoutId) => {
         return EmployeeSchema.findByIdAndUpdate(id, employee as UpdateQuery<Employee>, { new: true });
     },
     delete: (id: string) => {
-        return EmployeeSchema.findByIdAndDelete(id).lean<Employee>();
+        return EmployeeSchema.findByIdAndDelete(id);
     },
 }

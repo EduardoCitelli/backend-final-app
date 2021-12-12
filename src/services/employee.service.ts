@@ -10,7 +10,7 @@ async function GetAll(): Promise<Employee[]> {
 async function GetOne(id: string): Promise<Employee> {
     const employee = await EmplooyeeRepostory.findById(id);
 
-    return employee;
+    return employee as Employee;
 }
 
 async function Create(employee: Employee): Promise<Employee> {
@@ -28,7 +28,7 @@ async function Update(id: string, data: Employee): Promise<any> {
 async function Delete(id: string): Promise<Employee> {
     const employee = await EmplooyeeRepostory.delete(id);
 
-    return employee;
+    return employee as Employee;
 };
 
 export default {
