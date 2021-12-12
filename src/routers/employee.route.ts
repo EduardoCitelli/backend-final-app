@@ -2,7 +2,7 @@ import { EmployeeRoutes } from "./routes";
 import { validateBody, validateParameter } from "../middlewares";
 import { employeeValidation, employeeIdValidation } from "../schemas";
 import { employeeController } from "../controllers";
-import e, { Router } from 'express'
+import { Router } from 'express'
 
 export const employeeRouter = Router();
 
@@ -22,6 +22,13 @@ employeeRouter.post(
     validateBody(employeeValidation),
     employeeController.Create
 );
+
+employeeRouter.put(
+    EmployeeRoutes.Update,
+    validateParameter(employeeIdValidation),
+    validateBody(employeeValidation),
+    employeeController.Update
+)
 
 employeeRouter.delete(
     EmployeeRoutes.Delete,

@@ -73,6 +73,52 @@ async function Create(req: Request, res: Response) {
         });
 }
 
+async function Update(req: Request, res: Response) {
+    const { id } = req.params;
+    const employee: Employee = req.body;
+
+    await employeeService.Update(id, employee)
+        .then(updatedEmployee => {
+            if (!updatedEmployee) {
+                const response: BaseResponse<Employee> = {
+                    message: "Not Found",
+                    error: "Employee not found"
+                }
+
+                res.status(404).send(response);
+                return;
+            }
+
+            const response: BaseResponse<Employee> = {
+                message: "Success",
+                data: updatedEmployee,
+            }
+
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            if (error.code && error.code == 11000) {
+                const field = Object.keys(error.keyValue);
+
+                const response: BaseResponse<Employee> = {
+                    message: "error",
+                    error: `A employee with that ${field} already exists.`
+                }
+
+                res.status(409).json(response);
+
+                return;
+            }
+
+            const response: BaseResponse<Employee> = {
+                message: "error",
+                error: JSON.stringify(error).toString(),
+            }
+
+            res.status(500).json(response);
+        });
+}
+
 async function Delete(req: Request, res: Response) {
     const { id } = req.params;
 
@@ -100,5 +146,6 @@ export {
     GetAll,
     GetOne,
     Create,
+    Update,
     Delete,
 }
